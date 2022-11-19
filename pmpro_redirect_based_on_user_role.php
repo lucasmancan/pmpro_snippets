@@ -1,6 +1,5 @@
 
 <?php
-
 /**
  * This will restrict all pages except Paid Memberships Pro pages or the home page of your website to non-members / non-approved members / logged-out users.
  * This won't affect administrators.
@@ -45,7 +44,7 @@ function my_pmpro_redirect_non_members() {
 		if(pmpro_has_membership_access( $post_id ) ) {		
 			$access = true;
 		} else {
-			wp_redirect( site_url('/login/') );
+			wp_redirect( site_url("/login/?redirect_to=" . urlencode($_SERVER['REQUEST_URI'])) );
 			exit;
 		}
 	}
